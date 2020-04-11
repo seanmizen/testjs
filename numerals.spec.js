@@ -1,5 +1,5 @@
 const { numerals, numbers } = require("./numerals"); //.js is implied, { myThing } says import only this thing //"object destructuring"
-describe("Testing the number => numerals ", () => {
+describe("Testing number => numerals ", () => {
   it("Should turn numbers into numerals e.g. 2000 => MM", () => {
     expect(numerals(1999)).toBe("MCMXCIX");
     expect(numerals(2000)).toBe("MM");
@@ -8,7 +8,7 @@ describe("Testing the number => numerals ", () => {
     expect(numerals(75)).toBe("LXXV");
   });
 });
-describe("Testing the numerals => numbers ", () => {
+describe("Testing numerals => numbers ", () => {
   it("Should turn numerals into numbers e.g. MM => 2000", () => {
     expect(numbers("MCMXCIX")).toBe(1999);
     expect(numbers("MM")).toBe(2000);
