@@ -18,5 +18,6 @@ describe("Testing numerals => numbers ", () => {
   });
   it("Throws an error when an invalid string is supplied", () => {
     expect(() => numbers("XXLXXV")).toThrowErrorMatchingSnapshot();
+    expect(() => numbers("MCMDCDXCLXLXIXVIVI")).toThrowErrorMatchingSnapshot();
   });
 });
