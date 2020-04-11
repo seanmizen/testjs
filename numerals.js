@@ -33,7 +33,7 @@ const numbers = (forNumeral) => {
   for (let numeralIter in numeralsArrayRev) {
     let numeral = numeralsArrayRev[numeralIter];
     let number = NUMERAL_NUMBERS[numeral];
-    let nextChars = forNumeral.slice(0, numeral.length); // if numeral is multi-character e.g. "CD", pull the first N chars from forNumeral to compare where N is the char length.
+    let nextChars = forNumeral.slice(0, numeral.length); // if numeral is multi-character e.g. "CD", pull the first N chars from forNumeral to compare where N is the numeral length.
     while (nextChars === numeral) {
       returnVar += number;
       forNumeral = forNumeral.slice(numeral.length, forNumeral.length);
@@ -44,6 +44,7 @@ const numbers = (forNumeral) => {
     throw new Error("Oops! You gave an invalid string.");
   }
   if (numerals(returnVar) != inputNumeral) {
+    //MCMDCDXCLXLXIXVIVI would be valid without this check
     throw new Error("Oops! That numeral was nearly valid. Cheeky.");
   }
   return returnVar;
