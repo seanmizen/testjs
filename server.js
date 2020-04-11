@@ -14,7 +14,7 @@ app.get("/numerals/:forNumber", (req, res) => {
   console.log("/numerals/:forNumber");
   let myString;
   try {
-    myString = numerals(forNumber);
+    myString = numerals(req.forNumber);
   } catch {
     myString = "Invalid input supplied. Try again.";
   }
@@ -22,11 +22,10 @@ app.get("/numerals/:forNumber", (req, res) => {
 });
 app.get("/nothing", () => {});
 app.get("/numbers/:forNumeral", (req, res) => {
-  console.log("/numerals/:forNumber");
-  let myString;
+  console.log("/numbers/:forNumeral");
   let myString;
   try {
-    myString = numerals(forNumber);
+    myString = numbers(forNumber);
   } catch {
     myString = "Invalid input supplied. Try again.";
   }
