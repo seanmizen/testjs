@@ -1,5 +1,5 @@
-const numeralNumbers = {
-  //Fun if hacky: add your prefixes(IV, IX, XL, XC, CD, CM) as special cases here and your numerals() function can be written very elegantly.
+const NUMERAL_NUMBERS = {
+  //Fun if hacky: add your prefixes(IV, IX, XL, XC, CD, CM) as special cases here and your functions can be written very elegantly.
   I: 1,
   IV: 4,
   V: 5,
@@ -16,10 +16,10 @@ const numeralNumbers = {
 };
 const numerals = (forNumber) => {
   let returnVar = "";
-  numeralsArrayRev = Object.keys(numeralNumbers).reverse(); //  Start with the highest value numeral, and go down
+  numeralsArrayRev = Object.keys(NUMERAL_NUMBERS).reverse(); //  Start with the highest value numeral, and go down
   for (let numeralIter in numeralsArrayRev) {
     let numeral = numeralsArrayRev[numeralIter];
-    let number = numeralNumbers[numeral];
+    let number = NUMERAL_NUMBERS[numeral];
     let timesToRepeat = Math.floor(forNumber / number);
     returnVar = returnVar + numeral.repeat(timesToRepeat); //  Add on the right
     forNumber = forNumber - number * timesToRepeat; //  You've added the characters for this numeral, now get rid of what you've added
@@ -28,19 +28,19 @@ const numerals = (forNumber) => {
 };
 const numbers = (forNumeral) => {
   let returnVar = 0;
-  numeralsArrayRev = Object.keys(numeralNumbers).reverse(); //  Start with the highest value numeral, and go down
+  numeralsArrayRev = Object.keys(NUMERAL_NUMBERS).reverse(); //  Start with the highest value numeral, and go down
   for (let numeralIter in numeralsArrayRev) {
     let numeral = numeralsArrayRev[numeralIter];
-    let number = numeralNumbers[numeral];
-    let nextChars = forNumeral.slice(0, length(numeral));
+    let number = NUMERAL_NUMBERS[numeral];
+    let nextChars = forNumeral.slice(0, numeral.length); // if numeral is multi-character e.g. "CD", pull the first TWO chars from forNumeral to compare.
     while (nextChars === numeral) {
       returnVar += number;
-      forNumeral = forNumeral.slice(length(numeral), length(forNumeral));
+      forNumeral = forNumeral.slice(numeral.length, forNumeral.length);
+      nextChars = forNumeral.slice(0, numeral.length);
     }
   }
-  if (length(forNumeral) > 0) {
-    console.log("Error in numbers subroutine");
-    returnVar = -1;
+  if (forNumeral.length > 0) {
+    throw new Error("Oops! You gave an invalid string.");
   }
   return returnVar;
 };

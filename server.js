@@ -13,15 +13,23 @@ app.get("/", (req, res) => {
 app.get("/numerals/:forNumber", (req, res) => {
   console.log("/numerals/:forNumber");
   let myString;
-  myString += numerals(req.params.forNumber) + "\n";
+  try {
+    myString = numerals(forNumber);
+  } catch {
+    myString = "Invalid input supplied. Try again.";
+  }
   res.send(myString);
 });
 app.get("/nothing", () => {});
-app.get("/decimal/:forNumber/:anotherParam", (req, res) => {
-  myString = "";
-  myString += JSON.stringify(req.query) + "\n";
-  myString += JSON.stringify(req.params.forNumber) + "\n";
-  myString += JSON.stringify(req.params.anotherParam) + "\n";
+app.get("/numbers/:forNumeral", (req, res) => {
+  console.log("/numerals/:forNumber");
+  let myString;
+  let myString;
+  try {
+    myString = numerals(forNumber);
+  } catch {
+    myString = "Invalid input supplied. Try again.";
+  }
   res.send(myString);
 });
 app.get("/google", (req, res) => {

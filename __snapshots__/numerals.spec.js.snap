@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing numerals => numbers  Throws an error when an invalid string is supplied 1`] = `"Oops! You gave an invalid string."`;

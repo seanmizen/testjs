@@ -16,4 +16,7 @@ describe("Testing numerals => numbers ", () => {
     expect(numbers("XV")).toBe(15);
     expect(numbers("LXXV")).toBe(75);
   });
+  it("Throws an error when an invalid string is supplied", () => {
+    expect(() => numbers("XXLXXV")).toThrowErrorMatchingSnapshot();
+  });
 });
