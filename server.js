@@ -14,22 +14,21 @@ app.get("/numerals/:forNumber", (req, res) => {
   console.log("/numerals/:forNumber");
   let myString;
   try {
-    myString = numerals(req.forNumber);
+    myString = numerals(req.params.forNumber);
   } catch {
     myString = "Invalid input supplied. Try again.";
   }
-  res.send(myString);
+  res.send({ myString });
 });
-app.get("/nothing", () => {});
 app.get("/numbers/:forNumeral", (req, res) => {
   console.log("/numbers/:forNumeral");
   let myString;
   try {
-    myString = numbers(forNumber);
+    myString = numbers(req.params.forNumeral);
   } catch {
     myString = "Invalid input supplied. Try again.";
   }
-  res.send(myString);
+  res.send({ myString });
 });
 app.get("/google", (req, res) => {
   fetch("https://google.com")

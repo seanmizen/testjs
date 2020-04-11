@@ -27,12 +27,13 @@ const numerals = (forNumber) => {
   return returnVar;
 };
 const numbers = (forNumeral) => {
+  let inputNumeral = forNumeral; //Keep a record of this
   let returnVar = 0;
   numeralsArrayRev = Object.keys(NUMERAL_NUMBERS).reverse(); //  Start with the highest value numeral, and go down
   for (let numeralIter in numeralsArrayRev) {
     let numeral = numeralsArrayRev[numeralIter];
     let number = NUMERAL_NUMBERS[numeral];
-    let nextChars = forNumeral.slice(0, numeral.length); // if numeral is multi-character e.g. "CD", pull the first TWO chars from forNumeral to compare.
+    let nextChars = forNumeral.slice(0, numeral.length); // if numeral is multi-character e.g. "CD", pull the first N chars from forNumeral to compare where N is the char length.
     while (nextChars === numeral) {
       returnVar += number;
       forNumeral = forNumeral.slice(numeral.length, forNumeral.length);
@@ -41,6 +42,9 @@ const numbers = (forNumeral) => {
   }
   if (forNumeral.length > 0) {
     throw new Error("Oops! You gave an invalid string.");
+  }
+  if (numerals(returnVar) != inputNumeral) {
+    throw new Error("Oops! That numeral was nearly valid. Cheeky.");
   }
   return returnVar;
 };
