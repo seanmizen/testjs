@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 })
 app.get("/", (req, res) => {
     console.log("/");
-    res.send("lol1");
+    res.send("Welcome to the page. There's nothing really here.");
 });
 /*
 app.get("/numerals/:forNumber", (req,res) => {
@@ -64,15 +64,31 @@ app.listen("8081", () => { console.log("8081 is listening") });
 console.log("hmm");
 const numerals = (forNumber) => {
     let returnVar = "";
-    let numeralKeys = Object.keys(numeralNumbers);
-    for(let numeral in numeralKeys.reverse()){
-        let numberRepresentedByNumeral = numeralNumbers[numeral];
-        let timesToRepeat = Math.floor(forNumber / numberRepresentedByNumeral);
-        returnVar = numeral.repeat(timesToRepeat) + returnVar; //Add from the right
+    let isHighestNumeral = true;
+    numeralsArrayRev = Object.keys(numeralNumbers).reverse();   //  Start with the highest value numeral, and go down
+    for(let numeralIter in numeralsArrayRev){
+        let numeral = numeralsArrayRev[numeralIter];
+        let number = numeralNumbers[numeral];
+        let timesToRepeat = Math.floor(forNumber / number);
+        returnVar = returnVar + numeral.repeat(timesToRepeat) ; //  Add on the right
+        forNumber = forNumber - (number * timesToRepeat);       //  You've added the characters for this numeral, now get rid of what you've added
     }
-    console.log(returnVar);
     return (returnVar);
 }
 const numbers = (forNumeral) => {
     
 }
+const test_numerals = () => {
+    numeral1999 = numerals(1999);
+    numeral2000 = numerals(2000);
+    numeral2 = numerals(2);
+    numeral15 = numerals(15);
+    numeral75 = numerals(75);
+
+    console.log("1999 - Expected: MCMXCIX   Actual: " + numeral1999)
+    console.log("2000 - Expected: MM        Actual: " + numeral2000)
+    console.log("2    - Expected: II        Actual: " + numeral2)
+    console.log("15   - Expected: XV        Actual: " + numeral15)
+    console.log("75   - Expected: LXXV      Actual: " + numeral75)
+}
+test_numerals();
